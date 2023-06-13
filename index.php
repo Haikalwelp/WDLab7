@@ -122,7 +122,7 @@ if (isset($_POST['submit'])) {
         //echo "Registration successful";
 ?>
         <script>
-            alert("Registration successful");
+            alert("The credentials have been successfully stored.");
         </script>
 
 <?php
