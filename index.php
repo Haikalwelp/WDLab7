@@ -7,13 +7,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 
-  
+
 <body>
-<?php include 'connectdb.php'; ?>
 
 
 
-    <div class="container">]
+    <div class="container">
         <div class=" text-center mt-5 ">
 
             <h1>Bootstrap Contact Form</h1>
@@ -28,7 +27,7 @@
                     <div class="card-body bg-light">
 
                         <div class="container">
-                        <form id="contact-form" role="form" action="submit.php" method="POST">
+                            <form id="contact-form" role="form" method="post">
 
 
 
@@ -84,8 +83,7 @@
 
                                         <div class="col-md-12">
 
-                                            <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
-                        " value="Send Message">
+                                            <input type="submit" name="submit" class="btn btn-success btn-send  pt-2 btn-block" value="Send Message">
 
                                         </div>
 
@@ -107,5 +105,33 @@
         </div>
     </div>
 </body>
+
+<?php
+include 'db.php';
+
+if (isset($_POST['submit'])) {
+    $first_name = $_POST['name'];
+    $last_name = $_POST['surname'];
+    $email = $_POST['email'];
+    $need = $_POST['need'];
+    $message = $_POST['message'];
+    $query = "INSERT INTO credentials (first_name, last_name, email_address, need, message) VALUES ('$first_name', '$last_name', '$email', '$need', '$message')";
+    $result = mysqli_query($conn, $query);
+
+    if ($result) {
+        //echo "Registration successful";
+?>
+        <script>
+            alert("Registration successful");
+        </script>
+
+<?php
+
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+mysqli_close($conn);
+?>
 
 </html>
