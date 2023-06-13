@@ -9,7 +9,7 @@
 
   
 <body>
-<?php include 'db.php'; ?>
+<?php include 'connectdb.php'; ?>
 
 
 
